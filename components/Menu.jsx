@@ -140,7 +140,7 @@ export default function BasicMenu() {
   };
   return (
     <>
-      <div className="absolute z-50 top-0 left-0 p-4" style={{ pointerEvents: 'auto'}}>
+      <div className="absolute Z-10 top-0 left-0 p-4">
         <Button
           id="basic-button"
           aria-controls={open ? 'basic-menu' : undefined}
@@ -148,9 +148,6 @@ export default function BasicMenu() {
           color="white"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          
-         
-          
         >
           My Tools <ExpandMoreIcon />
         </Button>
