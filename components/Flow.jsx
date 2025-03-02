@@ -88,7 +88,7 @@ useEffect(() => {
   return (
     <div className="h-screen w-screen">
       {nodes.length==0&&(<div className='z-10 absolute w-full h-full flex justify-center items-center'>
-      <div className="absolute z-10 p-4 w-96  rounded-xl text-black bg-white border border-2-black">
+      <div className="absolute  p-4 w-96  rounded-xl text-black bg-white border border-2-black">
         <div>
           <label className="block font-bold">Node Name</label>
           <input
@@ -107,12 +107,7 @@ useEffect(() => {
         >
           Add Node
         </button>
-        <button
-          className="border w-full block border-2-black p-3 text-black  text-center rounded-xl"
-           
-        >
-          Close
-        </button>
+       
       </div>
       </div>)}
       
