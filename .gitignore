@@ -1,3 +1,4 @@
 # Ignore the sample folder
 node_modules/
 .env.local
+.env
