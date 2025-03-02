@@ -11,14 +11,9 @@ import CustomEdge from './CustomEdge';
 const STORAGE_KEY = 'react-flow-data';
 
 
-const initNodes = [
-  { id: '1', position: { x: 100, y: 100 }, data: { label: 'Node 1' }, type: 'custom' },
-  { id: '2', position: { x: 300, y: 200 }, data: { label: 'Node 2' }, type: 'custom' },
-];
+const initNodes = [];
 
-const initEdges = [
-  { id: '1-2', source: '1', target: '2', type: 'custom', animated: true, data: {} },
-];
+const initEdges = [];
 
 function Flow() {
 
