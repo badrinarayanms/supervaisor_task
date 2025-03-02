@@ -1,2 +1,3 @@
 # Ignore the sample folder
-sample/
+node_modules/
+.env.local
