@@ -14,7 +14,7 @@ const CustomNode = ({ id, data }) => {
     data: { label: '' },
     type: 'custom',
   });
-
+  const [surepop,setsurepop]=React.useState(false);
   const [newedge, setNewEdge] = React.useState( { id: '', source: '', target: '', type: 'custom', animated: true, data: {} },);
   const [editingnode, seteditingnode] = React.useState("");
   
@@ -76,6 +76,25 @@ const CustomNode = ({ id, data }) => {
     setsubOpenPopup(false);
 
   };
+ 
+      const opensurepop = (event) => {
+        event.stopPropagation(); // Stop event propagation
+        setsurepop(true);
+      };
+    
+      const closesurepop = (event) => {
+        event.stopPropagation(); // Stop event propagation
+        setsurepop(false);
+      };
+    
+      const handleRemovenode = (event) => {
+        event.stopPropagation(); // Stop event propagation
+        data.onRemove(id); // Call the onRemove function passed in data
+        setsurepop(false); // Close the popup
+      };
+
+
+
   
 
   return (
@@ -85,7 +104,7 @@ const CustomNode = ({ id, data }) => {
         {/* Remove Button */}
         <button
           className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1"
-          onClick={() => data.onRemove(id)}
+          onClick={opensurepop}
         >
           ✖
         </button>
@@ -171,6 +190,36 @@ const CustomNode = ({ id, data }) => {
       </div>
    
 )}
+{surepop && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%', // Position the popup below the node
+            left: '50%',
+            zIndex: 1000, // Ensure the popup is above other elements
+            transform: 'translate(-50%, -50%)',
+            pointerEvents: 'auto', 
+          }}
+        >
+          <div className="p-4 w-96 rounded-xl text-black bg-white border border-2-black">
+            <div className="text-center">
+              <label className="block font-bold">Deleting the node will delete the node disconnecting from its subnodes.</label>
+            </div>
+            <button
+              className="border w-full block border-2-black p-3 text-center rounded-xl mb-2 bg-black text-white"
+              onClick={handleRemovenode}
+            >
+              Delete Node
+            </button>
+            <button
+              className="border w-full block border-2-black p-3 text-black text-center rounded-xl"
+              onClick={closesurepop}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
 
 {subopenpopup && (
       <div className="absolute p-4 w-96  rounded-xl text-black bg-white border border-2-black">

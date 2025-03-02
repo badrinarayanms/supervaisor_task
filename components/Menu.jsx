@@ -14,29 +14,7 @@ import { CircularProgress } from '@mui/material';
 
 
 
-// const API_KEY = process.env.GEMINI_API_KEY;
-// const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
-// export const generateGeminiContent = async (prompt) => {
-//   try {
-//     const response = await axios.post(
-//       API_URL,
-//       {
-//         contents: [{ parts: [{ text: prompt }] }],
-//       },
-//       {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'x-goog-api-key': API_KEY,
-//         },
-//       }
-//     );
-//     return response.data;
-//   } catch (error) {
-//     console.error('Gemini API Error:', error);
-//     throw error;
-//   }
-// };
 
 export default function BasicMenu() {
   const { setNodes,setEdges } = useReactFlow();

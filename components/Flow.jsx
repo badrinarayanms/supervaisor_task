@@ -2,7 +2,7 @@
 
 import { ReactFlow, Controls, Background, useNodesState, useEdgesState } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CustomNode from './CustomNode';
 import CustomEdge from './CustomEdge';
 
@@ -23,7 +23,12 @@ function Flow() {
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
-
+  const [newnode, setNewNode] = useState({
+      id: '0',
+      position: { x: 0, y: 0 },
+      data: { label: '' },
+      type: 'custom',
+    });
  useEffect(() => {
   const savedData = localStorage.getItem(STORAGE_KEY);
   if (savedData) {
@@ -58,6 +63,7 @@ useEffect(() => {
   }, []);
 
 
+
   const handleRemoveNode = (nodeId) => {
     setNodes((nds) => nds.filter((node) => node.id !== nodeId));
     setEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId));
@@ -68,8 +74,51 @@ useEffect(() => {
     setEdges((eds) => eds.filter((edge) => edge.id !== edgeId));
   };
 
+  const handleAddNode = () => {
+    const newNodeId = `node-${Math.random().toString(36).substr(2, 9)}`;
+
+    const newNode = {
+      id: newNodeId,
+      position: { x: Math.random() * 500, y: Math.random() * 500 },
+      data: { label: newnode.data.label || 'New Node' },
+      type: newnode.type,
+    };
+    setNodes((nds) => [...nds, newNode]);
+
+    setNewNode({ id: '0', position: { x: 0, y: 0 }, data: { label: '' }, type: 'custom' });
+    
+  };
+
   return (
     <div className="h-screen w-screen">
+      {nodes.length==0&&(<div className='z-10 absolute w-full h-full flex justify-center items-center'>
+      <div className="absolute z-10 p-4 w-96  rounded-xl text-black bg-white border border-2-black">
+        <div>
+          <label className="block font-bold">Node Name</label>
+          <input
+            placeholder="Enter your Node"
+            className="border w-full block border-2-black p-3 text-center rounded-xl mb-2"
+            type="text"
+            onChange={(e) => {
+              console.log(e.target.value);
+              setNewNode({ ...newnode, data: { label: e.target.value } });
+            }}
+          />
+        </div>
+        <button
+          className="border w-full block border-2-black p-3 text-center rounded-xl mb-2 bg-black text-white"
+           onClick={handleAddNode}
+        >
+          Add Node
+        </button>
+        <button
+          className="border w-full block border-2-black p-3 text-black  text-center rounded-xl"
+           
+        >
+          Close
+        </button>
+      </div>
+      </div>)}
       
       <ReactFlow
         nodes={nodes.map((node) => ({
@@ -90,6 +139,8 @@ useEffect(() => {
         <Background />
         <Controls />
       </ReactFlow>
+
+      
     </div>
   );
 }
