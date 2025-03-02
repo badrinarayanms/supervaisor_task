@@ -6,17 +6,7 @@ import Flow from "../../components/Flow";
 import BasicMenu from "../../components/Menu";
 
 export default function Home() {
-  useEffect(() => {
-    const handleResize = () => {
-      window.location.reload();
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  
 
   return (
     <div className="relative w-screen min-h-screen flex flex-col md:flex-row items-center justify-center font-[family-name:var(--font-geist-sans)]">
