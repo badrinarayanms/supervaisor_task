@@ -3,7 +3,8 @@
 import { ReactFlow, Controls, Background, useNodesState, useEdgesState } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { useCallback, useEffect, useState } from 'react';
-import CustomNode from './CustomNode';
+import CustomNode from './Customnode';
+
 import CustomEdge from './CustomEdge';
 
 
