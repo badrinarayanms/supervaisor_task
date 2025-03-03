@@ -76,8 +76,8 @@ How It Works:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/Supervaisor-Task.git
-cd Supervaisor-Task
+git clone https://github.com/badrinarayanms/supervaisor_task.git
+cd supervaisor_task
 ```
 
 ### 2. Install Dependencies
@@ -86,7 +86,7 @@ npm install
 ```
 ### Create an .env.local file & add you Gemini Api key 
 ```
-NEXT_PUBLIC_API_KEY=yourkey
+NEXT_PUBLIC_API_KEY=yourGEMINIkey
 ```
 
 ### run the development server:
